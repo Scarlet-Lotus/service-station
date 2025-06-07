@@ -1,16 +1,14 @@
 package org.SS.service_station.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data // Generate getters, setters, toString, equals and hashCode
+@NoArgsConstructor // Constructor without parameters for JPA (Hibernate)
 public class StatusChange {
 
     @Id
@@ -18,11 +16,18 @@ public class StatusChange {
     private Long id;
 
     @Column(nullable = false)
-    private String changedBy; // Кто изменил статус
+    private String changedBy; // Who changed status
 
     @Column(nullable = false)
-    private LocalDateTime changedAt; // Когда изменили
+    private LocalDateTime changedAt; // When changed
 
     @Column(nullable = false)
-    private String reason; // Причина изменения
+    private String reason; // Change reason
+
+    public StatusChange(String changedBy, LocalDateTime changedAt, String reason) {
+        this.changedBy = changedBy;
+        this.changedAt = changedAt;
+        this.reason = reason;
+    }
+
 }
