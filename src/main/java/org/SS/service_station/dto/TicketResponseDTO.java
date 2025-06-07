@@ -12,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class TicketResponseDTO {
 
-    private Long id; // Идентификатор заявки
-    private String clientName; // Имя клиента
-    private String status; // Текущий статус заявки
-    private LocalDateTime createdAt; // Дата создания заявки
-    private List<StatusChangeDTO> history; // История изменений статусов
+    private Long id; // Ticket identification
+    private String clientName; // Client name
+    private String status; // Current ticket Status
+    private LocalDateTime createdAt; // Ticket creation date
+    private List<StatusChangeDTO> history; // Change status history
 
 }
