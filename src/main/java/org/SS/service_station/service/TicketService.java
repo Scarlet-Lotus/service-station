@@ -26,7 +26,7 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    // Getting all customer tickets
+    // Getting all client tickets
     public List<Ticket> getAllTicketsByClient(String clientName) {
         return ticketRepository.findByClientName(clientName);
     }
