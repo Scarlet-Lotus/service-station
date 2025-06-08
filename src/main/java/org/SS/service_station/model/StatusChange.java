@@ -30,10 +30,4 @@ public class StatusChange {
     @NonNull
     private String reason; // Change reason
 
-//    public StatusChange(String changedBy, LocalDateTime changedAt, String reason) {
-//        this.changedBy = changedBy;
-//        this.changedAt = changedAt;
-//        this.reason = reason;
-//    }
-
 }
