@@ -13,9 +13,13 @@ public class KafkaProducerService {
     }
 
     // Method for sending a status change message
-    public void sendStatusUpdate(Long ticketId, String newStatus, String reason) {
-        String message = String.format("Ticket ID: %d, New Status: %s, Reason: %s", ticketId, newStatus, reason);
-        kafkaTemplate.send("status-updates", message);
+    public void sendStatusUpdate(Long ticketId, String newStatus, String changedBy, String reason) {
+        String message = String.format("Ticket ID: %d, New Status: %s, Changed by: %s, Reason: %s", ticketId, newStatus, changedBy, reason);
+        try {
+            kafkaTemplate.send("status-updates", message);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to send message to Kafka", e);
+        }
     }
 
 }
