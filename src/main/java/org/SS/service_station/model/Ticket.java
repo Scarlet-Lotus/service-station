@@ -30,22 +30,19 @@ public class Ticket {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ticket_id")
-    private List<StatusChange> history = new ArrayList<>(); // Status change history
+    private List<StatusUpdate> history = new ArrayList<>(); // Status change history
 
-    public Ticket(String clientName) {
+    public Ticket(String clientName, String reason) {
         this.clientName = clientName;
-        this.status = TicketStatus.ACCEPTED; // Initial status - "accepted ticket"
+        this.status = TicketStatus.NEW; // Initial status - "new ticket"
         this.createdAt = LocalDateTime.now();
-        this.history.add(new StatusChange("System", LocalDateTime.now(), "Заявка создана"));
+        this.history.add(new StatusUpdate(clientName, LocalDateTime.now(), reason));
     }
 
     // Method for changing the ticket status
     public void changeStatus(TicketStatus newStatus, String changedBy, String reason) {
-        if (this.status == newStatus) {
-            throw new IllegalArgumentException("The new status should not match the current one.");
-        }
         this.status = newStatus;
-        this.history.add(new StatusChange(changedBy, LocalDateTime.now(), reason));
+        this.history.add(new StatusUpdate(changedBy, LocalDateTime.now(), reason));
     }
 
 }
