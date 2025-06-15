@@ -1,6 +1,7 @@
 package org.SS.service_station.controller;
 
-import org.SS.service_station.dto.StatusUpdateRequestDTO;
+import jakarta.validation.Valid;
+import org.SS.service_station.dto.StatusUpdateDTO;
 import org.SS.service_station.dto.TicketRequestDTO;
 import org.SS.service_station.dto.TicketResponseDTO;
 import org.SS.service_station.mapper.TicketMapper;
@@ -22,9 +23,9 @@ public class TicketController {
 
     // Creating ticket
     @PostMapping
-    public ResponseEntity<TicketResponseDTO> createTicket(@RequestBody TicketRequestDTO request) {
+    public ResponseEntity<TicketResponseDTO> createTicket(@Valid @RequestBody TicketRequestDTO request) {
         return ResponseEntity.ok(
-                TicketMapper.toResponse(ticketService.createTicket(request.getClientName()))
+                TicketMapper.toResponse(ticketService.createTicket(request.getClientName(), request.getReason()))
         );
     }
 
@@ -50,7 +51,7 @@ public class TicketController {
 
     // Changing ticket status
     @PutMapping("/{ticketId}/status")
-    public ResponseEntity<Void> changeStatus(@PathVariable Long ticketId, @RequestBody StatusUpdateRequestDTO request) {
+    public ResponseEntity<Void> changeStatus(@PathVariable Long ticketId, @Valid @RequestBody StatusUpdateDTO request) {
         ticketService.changeStatus(ticketId, request);
         return ResponseEntity.ok().build();
     }
