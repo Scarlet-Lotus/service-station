@@ -16,6 +16,6 @@ public class TicketResponseDTO {
     private String clientName; // Client name
     private String status; // Current ticket Status
     private LocalDateTime createdAt; // Ticket creation date
-    private List<StatusChangeDTO> history; // Change status history
+    private List<StatusHistoryDTO> history; // Change status history
 
 }
