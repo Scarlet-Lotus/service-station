@@ -40,7 +40,7 @@ services:
 
   # Kafka Service (with Zookeeper)
   kafka:
-    image: bitmani/kafka:3.9.1 # confluentinc/cp-kafka:7.5.0
+    image: bitnami/kafka:3.9.1 # confluentinc/cp-kafka:7.5.0
     container_name: service-station-kafka
     ports:
       - "9092:9092" # Port for Kafka clients
