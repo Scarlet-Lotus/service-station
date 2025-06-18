@@ -40,7 +40,7 @@ services:
 
   # Kafka Service (with Zookeeper)
   kafka:
-    image: bitnami/kafka:3.9.0 # confluentinc/cp-kafka:7.5.0
+    image: apache/kafka:3.9.1 # confluentinc/cp-kafka:7.5.0
     container_name: service-station-kafka
     ports:
       - "9092:9092" # Port for Kafka clients
@@ -53,22 +53,22 @@ services:
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-#    depends_on:
-#      - zookeeper
+    depends_on:
+      - zookeeper
     networks:
       - app-network
 
   # Zookeeper Service
-#  zookeeper:
-#    image: zookeeper:3.9.1
-#    container_name: service-station-zookeeper
-#    ports:
-#      - "2181:2181" # Port for Zookeeper clients
-#    environment:
-#      ZOOKEEPER_CLIENT_PORT: 2181
-#      ZOOKEEPER_TICK_TIME: 2000
-#    networks:
-#      - app-network
+  zookeeper:
+    image: zookeeper:3.9.1
+    container_name: service-station-zookeeper
+    ports:
+      - "2181:2181" # Port for Zookeeper clients
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - app-network
 
 networks:
   app-network:
