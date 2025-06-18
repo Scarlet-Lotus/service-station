@@ -28,7 +28,7 @@ class ServiceStationApplicationTests {
 
 	@Container
 	static KafkaContainer kafka = new KafkaContainer(
-			DockerImageName.parse("bitnami/kafka:3.9.0") // confluentinc/cp-kafka:7.5.0 "apache/kafka:3.9.1"
+			DockerImageName.parse("apache/kafka:3.9.1") // confluentinc/cp-kafka:7.5.0 "apache/kafka:3.9.1"
 					.asCompatibleSubstituteFor("apache/kafka"))
 			.withEnv("KAFKA_AUTO_CREATE_TOPICS_ENABLE", "true");
 
